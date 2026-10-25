@@ -1,6 +1,11 @@
 [
   {
     "date": "2026-10-25",
+    "title": "test",
+    "text": "witam"
+  },
+  {
+    "date": "2026-10-25",
     "title": "Nowa strona studia",
     "text": "Ruszyła strona Szczurro Studio. Tutaj będziemy pisać o nowych grach, aktualizacjach i tym, nad czym pracujemy."
   }
