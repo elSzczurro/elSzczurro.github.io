@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Szczurro Studio – studio gier w Pythonie, Scratchu i Roblox</title>
+<meta name="description" content="Tworzymy gry i uczymy je robić: Scratch, Python i Roblox.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f1f0fb; --surface:#ffffff; --ink:#1b1840; --muted:#55527a; --line:#d9d6f2;
+  --scratch:#ff8a1f; --python:#2f6db5; --roblox:#e5322d; --coin:#ffc928;
+  --head:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  --body:"Figtree","Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#14122e;--surface:#1e1b45;--ink:#f1f0fb;--muted:#b3b0d6;--line:#34306a;--python:#6aa3f0}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.6 var(--body)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--scratch);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 0;gap:16px;flex-wrap:wrap}
+.logo{font:800 1.4rem var(--head);text-decoration:none}
+nav{display:flex;gap:20px}
+nav a{text-decoration:none;font-weight:600;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+h1,h2,h3{font-family:var(--head);line-height:1.1;margin:0}
+h1{font-size:clamp(2.4rem,6vw,4.2rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:12px}
+section{padding:56px 0}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding-top:24px}
+.hero p{color:var(--muted);max-width:46ch;margin:18px 0 26px}
+.btn{display:inline-block;background:var(--ink);color:var(--bg);padding:12px 22px;border-radius:10px;font-weight:600;text-decoration:none}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--ink);margin-left:8px}
+.game{background:var(--surface);border:2px solid var(--ink);border-radius:14px;padding:12px;box-shadow:6px 6px 0 var(--ink)}
+.game canvas{width:100%;height:auto;display:block;border-radius:8px;background:#221f52;touch-action:none}
+.game-bar{display:flex;justify-content:space-between;font-size:.9rem;color:var(--muted);padding:8px 4px 0}
+.track{display:grid;grid-template-columns:150px 1fr;gap:28px;padding:30px 0;border-top:2px solid var(--line)}
+.track:last-of-type{border-bottom:2px solid var(--line)}
+.badge{font:800 1.5rem var(--head);padding:14px;border-radius:12px;color:#fff;align-self:start;text-align:center}
+.scratch .badge{background:var(--scratch);color:#2b1600}
+.python .badge{background:var(--python)}
+.roblox .badge{background:var(--roblox)}
+.track h3{font-size:1.5rem;margin-bottom:6px}
+.track p{margin:0 0 10px;color:var(--muted);max-width:62ch}
+.tags{display:flex;gap:8px;flex-wrap:wrap;padding:0;margin:10px 0 0;list-style:none}
+.tags li{border:1.5px solid var(--line);border-radius:99px;padding:3px 12px;font-size:.9rem;background:var(--surface)}
+.games{display:grid;grid-template-columns:2fr 1fr 1fr;gap:18px}
+.proj{background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:22px;min-height:190px;display:flex;flex-direction:column;justify-content:flex-end}
+.proj:first-child{min-height:260px;border-color:var(--ink)}
+.proj img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;margin-bottom:14px;background:var(--line)}
+.proj small{color:var(--muted)}
+.proj h3{font-size:1.3rem;margin:4px 0}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.about p{color:var(--muted);margin:0 0 14px}
+form{display:grid;gap:12px}
+label{font-weight:600;font-size:.95rem}
+input,textarea{width:100%;font:inherit;padding:11px 13px;border-radius:10px;border:2px solid var(--line);background:var(--surface);color:var(--ink)}
+textarea{min-height:110px;resize:vertical}
+button{font:inherit;font-weight:600;border:0;cursor:pointer}
+footer{padding:30px 0 50px;color:var(--muted);border-top:2px solid var(--line);font-size:.95rem}
+@media (max-width:760px){
+  .hero,.about,.games{grid-template-columns:1fr}
+  .track{grid-template-columns:1fr;gap:14px}
+  .badge{justify-self:start;padding:8px 16px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="#">Szczurro Studio</a>
+    <nav aria-label="Menu">
+      <a href="#oferta">Oferta</a>
+      <a href="#gry">Nasze gry</a>
+      <a href="#o-nas">O nas</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="t">
+      <div>
+        <h1 id="t">Gry robi się z klocków, kodu i pomysłów.</h1>
+        <p>Jesteśmy studiem, które tworzy gry w Scratchu, Pythonie i Roblox. Zagraj w mini grę obok, a potem sprawdź, od czego zacząć.</p>
+        <a class="btn" href="#oferta">Wybierz swoją drogę</a>
+      </div>
+      <div class="game">
+        <canvas id="c" width="480" height="300" aria-label="Mini gra: zbieraj monety strzałkami lub dotykiem"></canvas>
+        <div class="game-bar"><span>Strzałki / WASD albo dotyk</span><span>Monety: <b id="score">0</b></span></div>
+      </div>
+    </section>
+
+    <section id="oferta" aria-labelledby="o">
+      <h2 id="o">Trzy narzędzia, trzy poziomy</h2>
+      <p style="color:var(--muted);max-width:60ch;margin:0 0 24px">Zaczynasz od bloków, przechodzisz do prawdziwego kodu, a na końcu publikujesz grę dla milionów graczy.</p>
+
+      <article class="track scratch">
+        <div class="badge">Scratch</div>
+        <div>
+          <h3>Pierwsza gra w jedno popołudnie</h3>
+          <p>Układasz gotowe bloki zamiast pisać kod. Idealne dla dzieci od 7 lat i dla każdego, kto nigdy nie programował.</p>
+          <ul class="tags"><li>Duszki i animacje</li><li>Pętle i warunki</li><li>Dźwięk i muzyka</li></ul>
+        </div>
+      </article>
+
+      <article class="track python">
+        <div class="badge">Python</div>
+        <div>
+          <h3>Prawdziwy kod, prawdziwe gry</h3>
+          <p>Piszesz gry 2D w Pythonie z biblioteką Pygame. Uczysz się zmiennych, funkcji i klas na własnym projekcie.</p>
+          <ul class="tags"><li>Pygame</li><li>Kolizje i fizyka</li><li>Poziomy i punkty</li></ul>
+        </div>
+      </article>
+
+      <article class="track roblox">
+        <div class="badge">Roblox</div>
+        <div>
+          <h3>Świat 3D, który odwiedzają inni</h3>
+          <p>Budujesz mapy w Roblox Studio, piszesz skrypty w Luau i publikujesz grę, w którą zagrają znajomi.</p>
+          <ul class="tags"><li>Roblox Studio</li><li>Skrypty Luau</li><li>Gra wieloosobowa</li></ul>
+        </div>
+      </article>
+    </section>
+
+    <section id="gry" aria-labelledby="g">
+      <h2 id="g">Nasze gry</h2>
+      <p style="color:var(--muted);margin:0 0 24px">Nasze polecane gry:</p>
+      <div class="games">
+        <a class="proj" href="https://www.roblox.com/pl/games/121179213850115/find-the-teleporter"><img src="images/gra1.jpg" alt="Zrzut ekranu z gry Find the teleporter" onerror="this.remove()"><small>Roblox</small><h3>Find the teleporter</h3><span>Znajdź teleportery!</span></a>
+        <a class="proj" href="https://scratch.mit.edu/projects/1368485833"><img src="images/gra2.jpg" alt="Zrzut ekranu z gry Kot kurier 2" onerror="this.remove()"><small>Scratch</small><h3>Kot kurier 2</h3><span>Zagraj w przeglądarce.</span></a>
+        <a class="proj" href="https://el-szczurro.itch.io/ogrek-os"><img src="images/gra3.jpg" alt="Zrzut ekranu z gry Ogórek OS" onerror="this.remove()"><small>Python</small><h3>Ogórek OS</h3><span>Do pobrania.</span></a>
+      </div>
+    </section>
+
+    <section id="o-nas" aria-labelledby="k">
+      <h2 id="k">Kim jesteśmy</h2>
+      <p style="color:var(--muted);max-width:60ch;margin:0">Napisz tutaj kilka zdań o studiu: kto je tworzy, od kiedy działacie i dla kogo robicie gry lub zajęcia.</p>
+      <p style="margin:20px 0 0"><a class="btn" href="https://discord.com/channels/1563855345015857173/1563855345842003990" target="_blank" rel="noopener">Dołącz do nas na Discordzie</a></p>
+    </section>
+  </main>
+
+  <footer>© 2026 Szczurro Studio · <a href="https://github.com/">GitHub</a></footer>
+</div>
+
+<script>
+(function(){
+  var c=document.getElementById('c'),x=c.getContext('2d'),W=c.width,H=c.height;
+  var p={x:W/2,y:H/2,s:26},coin=null,score=0,keys={},target=null,sc=document.getElementById('score');
+  function spawn(){coin={x:30+Math.random()*(W-60),y:30+Math.random()*(H-60)}}
+  spawn();
+  addEventListener('keydown',function(e){
+    var k=e.key.toLowerCase();
+    if(['arrowup','arrowdown','arrowleft','arrowright'].indexOf(k)>-1)e.preventDefault();
+    keys[k]=true;target=null;
+  });
+  addEventListener('keyup',function(e){keys[e.key.toLowerCase()]=false});
+  function setTarget(e){
+    var r=c.getBoundingClientRect();
+    target={x:(e.clientX-r.left)*W/r.width,y:(e.clientY-r.top)*H/r.height};
+  }
+  c.addEventListener('pointerdown',setTarget);
+  c.addEventListener('pointermove',function(e){if(e.buttons)setTarget(e)});
+  function loop(){
+    var v=3.2,dx=0,dy=0;
+    if(keys.arrowleft||keys.a)dx-=1;
+    if(keys.arrowright||keys.d)dx+=1;
+    if(keys.arrowup||keys.w)dy-=1;
+    if(keys.arrowdown||keys.s)dy+=1;
+    if(target){
+      var tx=target.x-p.x,ty=target.y-p.y,d=Math.hypot(tx,ty);
+      if(d>4){dx=tx/d;dy=ty/d}else target=null;
+    }
+    p.x=Math.max(p.s/2,Math.min(W-p.s/2,p.x+dx*v));
+    p.y=Math.max(p.s/2,Math.min(H-p.s/2,p.y+dy*v));
+    if(Math.hypot(p.x-coin.x,p.y-coin.y)<p.s/2+11){score++;sc.textContent=score;spawn()}
+    x.fillStyle='#221f52';x.fillRect(0,0,W,H);
+    x.fillStyle='rgba(255,255,255,.06)';
+    for(var i=0;i<W;i+=40)x.fillRect(i,0,1,H);
+    for(var j=0;j<H;j+=40)x.fillRect(0,j,W,1);
+    x.fillStyle='#ffc928';x.beginPath();x.arc(coin.x,coin.y,11,0,7);x.fill();
+    x.fillStyle='#ff8a1f';x.fillRect(p.x-p.s/2,p.y-p.s/2,p.s,p.s);
+    x.fillStyle='#221f52';x.fillRect(p.x-7,p.y-6,4,6);x.fillRect(p.x+3,p.y-6,4,6);
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+</script>
+</body>
+</html>
