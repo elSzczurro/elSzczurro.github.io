@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Szczurro Studio – studio gier w Pythonie, Scratchu i Roblox</title>
-<meta name="description" content="Tworzymy gry w Scratchu, Pythonie i Roblox.">
+<title>Szczurro Studio – studio gier i stron w Pythonie, Scratchu, Roblox i HTML</title>
+<meta name="description" content="Tworzymy gry i strony internetowe w Scratchu, Pythonie, Roblox i HTML.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🐀</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,7 @@
 <style>
 :root{
   --bg:#f1f0fb; --surface:#ffffff; --ink:#1b1840; --muted:#55527a; --line:#d9d6f2;
-  --scratch:#ff8a1f; --python:#2f6db5; --roblox:#e5322d; --coin:#ffc928;
+  --scratch:#ff8a1f; --python:#2f6db5; --roblox:#e5322d; --web:#0b8a72; --coin:#ffc928;
   --head:"Bricolage Grotesque","Trebuchet MS",sans-serif;
   --body:"Figtree","Segoe UI",Arial,sans-serif;
 }
@@ -47,6 +47,7 @@ section{padding:56px 0}
 .scratch .badge{background:var(--scratch);color:#2b1600}
 .python .badge{background:var(--python)}
 .roblox .badge{background:var(--roblox)}
+.web .badge{background:var(--web)}
 .track h3{font-size:1.5rem;margin-bottom:6px}
 .track p{margin:0 0 10px;color:var(--muted);max-width:62ch}
 .tags{display:flex;gap:8px;flex-wrap:wrap;padding:0;margin:10px 0 0;list-style:none}
@@ -98,7 +99,7 @@ footer{padding:30px 0 50px;color:var(--muted);border-top:2px solid var(--line);f
     <a class="logo" href="#">Szczurro Studio</a>
     <nav aria-label="Menu">
       <a href="#narzedzia">Narzędzia</a>
-      <a href="#gry">Nasze gry</a>
+      <a href="#gry">Gry i strony</a>
       <a href="#devlog">Devlog</a>
       <a href="#o-nas">O nas</a>
       <button id="loginBtn" class="btn" type="button" style="padding:8px 16px">Zaloguj się</button>
@@ -109,8 +110,8 @@ footer{padding:30px 0 50px;color:var(--muted);border-top:2px solid var(--line);f
     <section class="hero" aria-labelledby="t">
       <div>
         <h1 id="t">Gry robi się z klocków, kodu i pomysłów.</h1>
-        <p>Jesteśmy studiem, które tworzy gry w Scratchu, Pythonie i Roblox. Zagraj w mini grę obok, a potem zobacz nasze projekty.</p>
-        <a class="btn" href="#gry">Zobacz nasze gry</a>
+        <p>Jesteśmy studiem, które tworzy gry i strony internetowe w Scratchu, Pythonie, Roblox i HTML. Zagraj w mini grę obok, a potem zobacz nasze projekty.</p>
+        <a class="btn" href="#gry">Zobacz nasze projekty</a>
       </div>
       <div class="game">
         <canvas id="c" width="480" height="300" aria-label="Mini gra: zbieraj monety strzałkami lub dotykiem"></canvas>
@@ -119,8 +120,8 @@ footer{padding:30px 0 50px;color:var(--muted);border-top:2px solid var(--line);f
     </section>
 
     <section id="narzedzia" aria-labelledby="o">
-      <h2 id="o">Trzy narzędzia, jedno studio</h2>
-      <p style="color:var(--muted);max-width:60ch;margin:0 0 24px">Każda gra zaczyna się od innego narzędzia. Wybieramy to, które pasuje do pomysłu.</p>
+      <h2 id="o">Cztery narzędzia, jedno studio</h2>
+      <p style="color:var(--muted);max-width:60ch;margin:0 0 24px">Każdy projekt zaczyna się od innego narzędzia. Wybieramy to, które pasuje do pomysłu.</p>
 
       <article class="track scratch">
         <div class="badge">Scratch</div>
@@ -148,16 +149,26 @@ footer{padding:30px 0 50px;color:var(--muted);border-top:2px solid var(--line);f
           <ul class="tags"><li>Roblox Studio</li><li>Skrypty Luau</li><li>Gra wieloosobowa</li></ul>
         </div>
       </article>
+
+      <article class="track web">
+        <div class="badge">HTML</div>
+        <div>
+          <h3>Strony internetowe</h3>
+          <p>Budujemy strony w HTML, CSS i JavaScript, takie jak ta. Od wizytówek studia po małe gry działające w przeglądarce.</p>
+          <ul class="tags"><li>HTML i CSS</li><li>JavaScript</li><li>Strony na GitHub Pages</li></ul>
+        </div>
+      </article>
     </section>
 
     <section id="gry" aria-labelledby="g">
-      <h2 id="g">Nasze gry</h2>
-      <p style="color:var(--muted);margin:0 0 24px">Nasze polecane gry:</p>
+      <h2 id="g">Nasze gry i strony</h2>
+      <p style="color:var(--muted);margin:0 0 24px">Nasze polecane projekty:</p>
       <div class="games">
         <a class="proj" href="https://www.roblox.com/pl/games/121179213850115/find-the-teleporter"><img src="images/gra1.jpg" alt="Zrzut ekranu z gry Find the teleporter" onerror="this.remove()"><small>Roblox</small><h3>Find the teleporter</h3><span>Znajdź teleportery!</span></a>
         <a class="proj" href="https://scratch.mit.edu/projects/1368485833"><img src="images/gra2.jpg" alt="Zrzut ekranu z gry Kot kurier 2" onerror="this.remove()"><small>Scratch</small><h3>Kot kurier 2</h3><span>Zagraj w przeglądarce.</span></a>
         <a class="proj" href="https://el-szczurro.itch.io/ogrek-os"><img src="images/gra3.jpg" alt="Zrzut ekranu z gry Ogórek OS" onerror="this.remove()"><small>Python</small><h3>Ogórek OS</h3><span>Do pobrania.</span></a>
       </div>
+      <p style="margin:24px 0 0"><a class="btn" href="https://elszczurro.github.io/linki/">Linki</a></p>
     </section>
 
     <section id="devlog" aria-labelledby="d">
